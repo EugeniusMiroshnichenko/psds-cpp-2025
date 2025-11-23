@@ -3,5 +3,6 @@
 
 
 int64_t Addition(int a, int b) {
-    throw std::runtime_error{"Not implemented"};
+    int64_t result = static_cast<int64_t>(a) + static_cast<int64_t>(b);
+    return result;
 }
