@@ -22,7 +22,7 @@ bool isQuadratic(int a){
 
 std::string AddRootToStr(double x){
     std::ostringstream oss;
-    oss << std::fixed << std::setprecision(6);
+    oss << std::setprecision(6);
     if (std::abs(x - std::round(x)) < 1e-10) {
         oss << static_cast<int>(std::round(x));
     } else {
