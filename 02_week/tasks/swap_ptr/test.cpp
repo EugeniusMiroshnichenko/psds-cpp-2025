@@ -46,7 +46,7 @@ TEST(SwapPtrTest, SwapIntPointers) {
     EXPECT_EQ(*ptr1, 10);
     EXPECT_EQ(*ptr2, 20);
 
-    SwapPointers(ptr1, ptr2);
+    SwapPtr(ptr1, ptr2);
 
     EXPECT_EQ(ptr1, &b);
     EXPECT_EQ(ptr2, &a);
@@ -64,8 +64,8 @@ TEST(SwapPtrTest, SwapIntPointersTwice) {
     EXPECT_EQ(*ptr1, 10);
     EXPECT_EQ(*ptr2, 20);
 
-    SwapPointers(ptr1, ptr2);
-    SwapPointers(ptr1, ptr2);
+    SwapPtr(ptr1, ptr2);
+    SwapPtr(ptr1, ptr2);
 
     EXPECT_EQ(ptr1, &a);
     EXPECT_EQ(ptr2, &b);
@@ -78,7 +78,7 @@ TEST(SwapPtrTest, SwapWithNullptr) {
     int* ptr1 = &value;
     int* ptr2 = nullptr;
     
-    SwapPointers(ptr1, ptr2);
+    SwapPtr(ptr1, ptr2);
     
     EXPECT_EQ(ptr1, nullptr);
     EXPECT_EQ(ptr2, &value);
@@ -89,18 +89,18 @@ TEST(SwapPtrTest, SwapBothNullptr) {
     int* ptr1 = nullptr;
     int* ptr2 = nullptr;
 
-    SwapPointers(ptr1, ptr2);
+    SwapPtr(ptr1, ptr2);
     
     EXPECT_EQ(ptr1, nullptr);
     EXPECT_EQ(ptr2, nullptr);
 }
 
-TEST(SwapPtrTest, SwapPointersToSameObject) {
+TEST(SwapPtrTest, SwapPtrToSameObject) {
     int value = 123;
     int* ptr1 = &value;
     int* ptr2 = &value;
     
-    SwapPointers(ptr1, ptr2);
+    SwapPtr(ptr1, ptr2);
 
     EXPECT_EQ(ptr1, &value);
     EXPECT_EQ(ptr2, &value);
@@ -114,7 +114,7 @@ TEST(SwapPtrTest, SwapArrayPointers) {
     int* ptr1 = arr1;
     int* ptr2 = arr2;
     
-    SwapPointers(ptr1, ptr2);
+    SwapPtr(ptr1, ptr2);
     
     EXPECT_EQ(ptr1, arr2);
     EXPECT_EQ(ptr2, arr1);
@@ -132,7 +132,7 @@ TEST(SwapPtrTest, SwapConstPointers) {
     const int* ptr1 = &a;
     const int* ptr2 = &b;
 
-    SwapPointers(ptr1, ptr2);
+    SwapPtr(ptr1, ptr2);
     
     EXPECT_EQ(ptr1, &b);
     EXPECT_EQ(ptr2, &a);
@@ -147,14 +147,14 @@ TEST(SwapPtrTest, SwapPointerToPointer) {
     int** pptr1 = &ptr1;
     int** pptr2 = &ptr2;
 
-    SwapPointers(pptr1, pptr2);
+    SwapPtr(pptr1, pptr2);
     
     EXPECT_EQ(pptr1, &ptr2);
     EXPECT_EQ(pptr2, &ptr1);
     EXPECT_EQ(ptr1, &a);
     EXPECT_EQ(ptr2, &b);
-    EXPECT_EQ(**pptr1, a);
-    EXPECT_EQ(**pptr2, b);
+    EXPECT_EQ(**pptr1, b);
+    EXPECT_EQ(**pptr2, a);
 }
 
 TEST(SwapPtrTest, VerifyValuesNotChanged) {
@@ -162,7 +162,7 @@ TEST(SwapPtrTest, VerifyValuesNotChanged) {
     int* ptr1 = &a;
     int* ptr2 = &b;
     
-    SwapPointers(ptr1, ptr2);
+    SwapPtr(ptr1, ptr2);
 
     EXPECT_EQ(a, 10);
     EXPECT_EQ(b, 20);
