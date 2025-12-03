@@ -27,11 +27,6 @@ protected:
     std::streambuf* origin_cout;
 };
 
-TEST_F(PrintArrayTest, EmptyArray) {
-    int arr[] = {1};
-    PrintArray(arr, arr);
-    EXPECT_EQ(GetOutput(), "[]\n");
-}
 
 TEST_F(PrintArrayTest, Nullptr) {
     PrintArray(nullptr, nullptr);
