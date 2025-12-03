@@ -98,7 +98,7 @@ TEST_F(PrintMemoryTest, DoubleZero) {
 TEST_F(PrintMemoryTest, DoublePositive) {
     PrintMemory(36.6);
     std::string output = GetOutput();
-    EXPECT_EQ(output, "0xCDCCCCCCCC4C424\n");
+    EXPECT_EQ(output, "0xCDCCCCCCCC4C4240\n");
 }
 
 TEST_F(PrintMemoryTest, DoubleNegative) {
