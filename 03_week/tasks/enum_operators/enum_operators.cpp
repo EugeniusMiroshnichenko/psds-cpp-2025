@@ -21,7 +21,10 @@ CheckFlags operator|(const CheckFlags& lhs, const CheckFlags& rhs) {
 }
 
 bool operator&(const CheckFlags& lhs, const CheckFlags& rhs) {
-    return ((static_cast<uint8_t>(lhs) & 0x3F) & (static_cast<uint8_t>(rhs)& 0x3F)) == (static_cast<uint8_t>(rhs)& 0x3F);
+    uint8_t lhs_int = static_cast<uint8_t>(lhs) & 0x3F;
+    uint8_t rhs_int = static_cast<uint8_t>(rhs) & 0x3F;
+    if (lhs_int == 0u || rhs_int == 0u) return false;
+    return ((lhs_int & rhs_int) == lhs_int || (lhs_int & rhs_int) == rhs_int);
 }
 
 CheckFlags operator^(const CheckFlags& lhs, const CheckFlags& rhs) {
@@ -30,13 +33,14 @@ CheckFlags operator^(const CheckFlags& lhs, const CheckFlags& rhs) {
     );
 }
 
-CheckFlags operator~(const CheckFlags& flag) {
+CheckFlags operator~(const CheckFlags& flags) {
     return static_cast<CheckFlags>(
-        (~static_cast<uint8_t>(flag)) & 0x3F
+        (~static_cast<uint8_t>(flags)) & 0x3F
     );
 }
 
 std::ostream& operator<<(std::ostream& os, CheckFlags flags) {
+    flags = static_cast<CheckFlags>(static_cast<uint8_t>(flags) & 0x3F);
     if (flags == CheckFlags::NONE) {
         os << "NONE";
         return os;
